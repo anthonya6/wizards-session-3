@@ -33,9 +33,7 @@ jobs:
     - id: use-secret
       name: Use Secret
       run: |
-          echo '${{ steps.fetch-dynamic-secret.outputs.dynamic-secret
-          }}' | jq -r
-          'to_entries|map("POSTGRES_\(.key|ascii_upcase)=\(.value|tostring)")|.[]'
-          >> $GITHUB_ENV       
+       echo '${{ steps.fetch-dynamic-secret.outputs.dynamic-secret
+       }}' | jq -r 'to_entries|map("\(.key|ascii_upcase)=\(.value|tostring)")|.[]'
           
            
