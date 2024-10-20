@@ -30,14 +30,23 @@ jobs:
         static-secrets: |
          - name: "MyFirstSecret"
            output-name: "my-first-secret"
-    - id: use-secrets
+    - id: use-secrets-1
       name: Use Secrets
       env:
        SECRET: ${{ env.my-first-secret }}      
       run: |
        # Use the secrets
-       echo "Use Secrets"
+       echo "Use Secrets 1"
        echo "Doing something with $SECRET"
+    - id: use-secrets-2
+      name: Use Secrets
+      env:
+       SECRET: ${{ env.my-first-secret }}      
+      run: |
+       # Use the secrets
+       echo "Use Secrets 2"
+       echo "Doing something with ${{ steps.fetch-secrets.outputs.my-first-secret }}"      
+       
 
         
         
