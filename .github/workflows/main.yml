@@ -19,7 +19,7 @@ jobs:
       name: Checkout Git Repo
       uses: actions/checkout@v2
     - id: fetch-secrets
-      name: Fetch Secrets
+      name: Fetch Secrets 1
       uses: akeyless-community/akeyless-github-action@v1.1.2
       with:
         access-id: '${{ secrets.ACCESS_ID }}'
@@ -31,7 +31,7 @@ jobs:
          - name: "MyFirstSecret"
            output-name: "my-first-secret"
     - id: use-secrets-1
-      name: Use Secrets
+      name: Use Secrets 1
       env:
        SECRET: ${{ env.my-first-secret }}      
       run: |
@@ -39,9 +39,7 @@ jobs:
        echo "Use Secrets 1"
        echo "Doing something with $SECRET"
     - id: use-secrets-2
-      name: Use Secrets
-      env:
-       SECRET: ${{ env.my-first-secret }}      
+      name: Use Secrets 2 
       run: |
        # Use the secrets
        echo "Use Secrets 2"
