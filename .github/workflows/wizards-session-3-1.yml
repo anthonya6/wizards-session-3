@@ -18,8 +18,8 @@ jobs:
     - id: checkout
       name: Checkout Git Repo
       uses: actions/checkout@v2
-    - id: fetch-secrets-1
-      name: Fetch Secrets 1
+    - id: fetch-secret
+      name: Fetch Secret
       uses: akeyless-community/akeyless-github-action@v1.1.2
       with:
         access-id: '${{ secrets.ACCESS_ID }}'
@@ -30,20 +30,20 @@ jobs:
         static-secrets: |
          - name: "MyFirstSecret"
            output-name: "my-first-secret"
-    - id: use-secrets-1
-      name: Use Secrets 1
+    - id: use-secret-1
+      name: Use Secret 1
       env:
        SECRET: ${{ env.my-first-secret }}      
       run: |
        # Use the secrets
-       echo "Use Secrets 1"
+       echo "Use Secret"
        echo "Doing something with $SECRET"
-    - id: use-secrets-2
-      name: Use Secrets 2 
+    - id: use-secret-2
+      name: Use Secret 2 
       run: |
        # Use the secrets
        echo "Use Secrets 2"
-       echo "Doing something with ${{ steps.fetch-secrets-1.outputs.my-first-secret }}"      
+       echo "Doing something with ${{ steps.fetch-secret.outputs.my-first-secret }}"      
        
 
         
