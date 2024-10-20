@@ -34,6 +34,12 @@ jobs:
       name: Use Secret
       run: |
        echo '${{ steps.fetch-dynamic-secret.outputs.dynamic-secret
-       }}' | jq -r 'to_entries|map("\(.key|ascii_upcase)=\(.value|tostring)")|.[]'
-          
-           
+       }}' | jq -r 'to_entries|map("\(.key|ascii_upcase)=\(.value|tostring)")|.[]' >> $GITHUB_ENV
+    - id: print-secret
+      name: Print Secret
+      run: |
+       echo "id: ${{ env.ID }}" >> secrets.txt
+       echo "password: ${{ env.PASSWORD }}" >> secrets.txt
+       echo "ttl_in_minutes: ${{ env.TTL_IN_MINUTES }}" >> secrets.txt
+       echo "user: ${{ env.USER }}" >> secrets.txt
+       cat secrets.txt
