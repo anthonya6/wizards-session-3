@@ -15,5 +15,19 @@ jobs:
      id-token: write
      contents: read
     steps:
-    - name: Checkout Git Repo
+    - id: checkout
+      name: Checkout Git Repo
       uses: actions/checkout@v2
+    - id: fetch-secrets
+      name: Fetch Secrets
+      uses: akeyless-community/akeyless-github-action@v1.1.2
+      with:
+        access-id: '${{ secrets.ACCESS_ID }}'
+        access-type: jwt
+        export-secrets-to-outputs: true
+        export-secrets-to-environment: true
+        static-secrets: |
+         - name: "MyFirstSecret"
+           output-name: "my-first-secret"
+        
+      
