@@ -18,8 +18,8 @@ jobs:
     - id: checkout
       name: Checkout Git Repo
       uses: actions/checkout@v2
-    - id: fetch-postgres-dynamic-secrets-1
-      name: Fetch Postgres Dynamic Secrets 1
+    - id: fetch-dynamic-secret
+      name: Fetch Dynamic Secret
       uses: akeyless-community/akeyless-github-action@v1.1.2
       with:
         access-id: '${{ secrets.ACCESS_ID }}'
@@ -28,5 +28,11 @@ jobs:
         export-secrets-to-environment: true
         api-url: "https://csm.thalescryptolabs.com/akeyless-api/v2/"
         dynamic-secrets: |
-         - name: "thales-postgres-dynamic-secret"
-           output-name: "thales-postgres-dynamic-secret"
+         - name: "dynamic-secret"
+           output-name: "dynamic-secret"
+    - id: use-secret
+      name: Use Secret
+      run: |
+       echo '${{ steps.fetch-dynamic-secret.outputs.dynamic_secret }}' | jq -r
+          
+           
