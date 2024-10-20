@@ -30,5 +30,9 @@ jobs:
         dynamic-secrets: |
          - name: "thales-postgres-dynamic-secret"
            output-name: "dynamic-secret"
+    - id: use-secret
+      name: Use Secret
+      run: |
+       echo '${{ steps.fetch-dynamic-secret.outputs.dynamic-secret}}' | jq -r           
           
            
