@@ -30,9 +30,5 @@ jobs:
         dynamic-secrets: |
          - name: "dynamic-secret"
            output-name: "dynamic-secret"
-    - id: use-secret
-      name: Use Secret
-      run: |
-       echo '${{ steps.fetch-dynamic-secret.outputs.dynamic_secret }}' | jq -r
           
            
