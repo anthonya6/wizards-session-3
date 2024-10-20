@@ -30,5 +30,15 @@ jobs:
         static-secrets: |
          - name: "MyFirstSecret"
            output-name: "my-first-secret"
+    - id: use-secrets
+      name: Use Secrets
+      env:
+       SECRET: ${{ env.my-first-secret }}      
+      run: |
+       # Use the secrets
+       echo "Use Secrets"
+       echo "Doing something with $SECRET"
+
+        
         
       
